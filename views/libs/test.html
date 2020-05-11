@@ -1,0 +1,96 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Date Picker</title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$( function() {
+				$( "#datepicker" ).datepicker({
+					maxDate: '0',
+					minDate: new Date('2019/09/28'),
+					dateFormat: "yy/mm/dd"
+				});
+			} );
+	</script>
+	
+</head>
+<!-- <body onload="getDate()"> -->
+<body>
+<div name="date">
+<p>Date: <input type="text" id="datepicker" required>
+	<span class="validity"></span>
+</p>
+</div>
+<br>
+<div name="submit">
+<button type="button" id="submit" name="submit" value="submit" onclick="redirect()">Enter
+</button>
+<button type="button" id="submit2" name="submit2" value="Current_Wind" onclick="redirectCurrent()">Current Wind
+	
+</button>
+<!-- <script> -->
+<!-- 	function getDate() { -->
+<!-- 			//get today date -->
+<!-- 			var today = new Date(); -->
+<!-- 			var dd = today.getDate(); -->
+<!-- 			var mm = today.getMonth() + 1; //January is 0! -->
+<!--  -->
+<!-- 			var yyyy = today.getFullYear(); -->
+<!-- 			if (dd < 10) { -->
+<!-- 				dd = '0' + dd; -->
+<!-- 			}  -->
+<!-- 			if (mm < 10) { -->
+<!-- 				mm = '0' + mm; -->
+<!-- 			}  -->
+<!-- 			var today = dd + '-' + mm + '-' + yyyy; -->
+<!-- 			document.getElementById('datepicker').max = today; -->
+<!-- 		} -->
+<!-- </script> -->
+<script>
+		function redirect() {
+//		date format = yyyy-mm-dd
+		var date = document.querySelector('input[type="text"]');
+		var dateString = date.value.toString().split("/");
+		var year = dateString[0];
+		var month = dateString[1];
+		var day = dateString[2];
+		webPreferences:{
+			nodeIntegration: true;
+		}
+		
+		
+		var today = new Date();
+		var dd = String(today.getDate()).padStart(2, '0');
+		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+		var yyyy = today.getFullYear();
+		
+		if (yyyy==year && month==mm && dd==day) {
+			window.location.href = "http://s3615651.mywire.org:8080/earth/#current/wind/surface/level";
+
+		}
+		else
+		{
+			window.location.href = "http://s3615651.mywire.org:8080/earth/#"+year+"/"+month+"/"+day+"/0000Z/wind/surface/level/orthographic";
+		}
+		
+//		pushToShell(year, month, day);
+		
+	}
+		function redirectCurrent() {
+			window.location.href = "http://s3615651.mywire.org:8080/earth/#current/wind/surface/level";
+			
+		}
+	
+	
+</script>
+<!-- <script src="newpush.js" charset="utf-8"></script> -->
+<!-- <script src="require.js" charset="utf-8"></script> -->
+
+</body>
+</html>
