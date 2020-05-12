@@ -70,7 +70,7 @@ app.use(cors({
 //    Models & DB
 // ===================
 const url =
-  "mongodb://dbUser:aiculus2019S2@ds235418.mlab.com:35418/cloudcomputing";
+    "mongodb://developer:developer_password@cluster0-2hg4p.mongodb.net/cloudcomputing";
 mongoose
   .connect(url, {
     useNewUrlParser: true,
