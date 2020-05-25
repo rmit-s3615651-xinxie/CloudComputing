@@ -3,8 +3,30 @@
 RMIT university 2020
 
 ## Getting Started
+- SSH to EC2 instance
+```
+ssh -i /path/my-key-pair.pem ec2-user@s3615651.mywire.org
+```
+- Start web service
+```
+> screen
+> cd CloudComputingAssign2/
+> npm install; $ npm start
+# CTRL A -> CTRL D to quite current sreen and let dev server remain running
+```
+- Stop web service
+```
+> sreen -r // resume running session
+# CTRL + C to stop server 
+```
 
-$ npm install; $ npm start 
+- S3 mount point
+```
+# S3 bucket is mounted locally here /home/ec2-user/Cloud
+s3fs cloudcomputingdir -o use_cache=/tmp -o multireq_max=5 -o endpoint="ap-southeast-2" -o passwd_file=passwd-s3fs -o umask=0007,uid=$UID -o url=https://s3-ap-southeast-2.amazonaws.com /home/ec2-user/Cloud
+# make a symbolic link to data folder of web service /home/ec2-user/CloudComutingAssign2/views/data
+> ln -s /home/ec2-user/Cloud/data /home/ec2-user/CloudComutingAssign2/views/data
+```
 
 ### Prerequisites
 
